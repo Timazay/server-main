@@ -1,0 +1,61 @@
+
+services:
+  server-app:
+    build:
+      context: ..
+      dockerfile: ../Dockerfile
+    ports:
+      - "8888:8888"
+    networks:
+      - network
+    depends_on:
+      - db
+ #   environment:
+ #     - LIQUIBASE_CHANGELOG=/liquibase/changelog/db.changelog-master.yaml
+#
+ # liquibase:
+ #   image: liquibase/liquibase
+ #   command: update
+ #   volumes:
+ #     - ./src/main/resources/db/changelog:/liquibase/changelog
+ #   environment:
+ #     - LIQUIBASE_CHANGELOG=/liquibase/changelog/db.changelog-master.yaml
+ #     - LIQUIBASE_URL=jdbc:mysql://localhost:3309/configs
+ #     - LIQUIBASE_USERNAME=user
+ #     - LIQUIBASE_PASSWORD=123
+ #   networks:
+ #     - network
+ #   depends_on:
+ #     - db
+
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: configs
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 123
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    ports:
+      - "3309:3306"
+    networks:
+      - network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: always
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: 123
+    ports:
+      - "8081:80"
+    networks:
+      - network
+
+networks:
+  network:
+    external: true

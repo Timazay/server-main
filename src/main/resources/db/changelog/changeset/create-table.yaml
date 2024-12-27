@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Timazay
+      changes:
+        - createTable:
+            tableName: properties
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    autoIncrement: true
+              - column:
+                  name: prop_key
+                  type: varchar(255)
+              - column:
+                  name: value
+                  type: varchar(255)
+              - column:
+                  name: application
+                  type: varchar(255)
+              - column:
+                  name: profile
+                  type: varchar(255)
+              - column:
+                  name: label
+                  type: varchar(255)
+                  defaultValue: 'master'

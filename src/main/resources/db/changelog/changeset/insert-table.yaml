@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Timazay
+      changes:
+        - insert:
+            tableName: properties
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: prop_key
+                  value: 'spring.artemis.broker-url'
+              - column:
+                  name: value
+                  value: 'tcp://localhost:61617'
+              - column:
+                  name: application
+                  value: 'CamundaProject'
+              - column:
+                  name: profile
+                  value: 'default'
+              - column:
+                  name: label
+                  value: 'master'
+        - insert:
+            tableName: properties
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: prop_key
+                  value: 'spring.artemis.broker-url'
+              - column:
+                  name: value
+                  value: 'tcp://localhost:61616'
+              - column:
+                  name: application
+                  value: 'CamundaProject'
+              - column:
+                  name: profile
+                  value: 'default'
+              - column:
+                  name: label
+                  value: 'latest'
